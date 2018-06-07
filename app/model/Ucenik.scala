@@ -1,5 +1,7 @@
 package model
 
+import play.api.libs.json._
+
 case class Ucenik(id: String,
                   razred: String,
                   licniPodaci: LicniPodaci,
@@ -8,10 +10,8 @@ case class Ucenik(id: String,
 
 object Ucenik {
 
-  import play.api.libs.json._
-
   implicit object UcenikWrites extends OWrites[Ucenik] {
-    override def writes(ucenik: Ucenik): JsObject = Json.obj(
+    def writes(ucenik: Ucenik): JsObject = Json.obj(
       "_id" -> ucenik.id,
       "razred" -> ucenik.razred,
       "licniPodaci" -> ucenik.licniPodaci,
@@ -21,7 +21,7 @@ object Ucenik {
   }
 
   implicit object UcenikReads extends Reads[Ucenik] {
-    override def reads(json: JsValue): JsResult[Ucenik] = json match {
+    def reads(json: JsValue): JsResult[Ucenik] = json match {
       case obj: JsObject => try {
         val id = (obj \ "_id").as[String]
         val razred = (obj \ "razred").as[String]
@@ -30,6 +30,7 @@ object Ucenik {
         val vladanje = (obj \ "vladanje").as[IzostanciVladanje]
 
         JsSuccess(Ucenik(id, razred, licniPodaci, predmeti, vladanje))
+
       } catch {
         case cause: Throwable => JsError(cause.getMessage)
       }

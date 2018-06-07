@@ -1,5 +1,7 @@
 package model
 
+import play.api.libs.json._
+
 case class LicniPodaci(jmbg: Int,
                        ime: String,
                        prezime: String,
@@ -13,7 +15,7 @@ object LicniPodaci {
   import play.api.libs.json._
 
   implicit object LicniPodaciWrites extends OWrites[LicniPodaci] {
-    override def writes(lp: LicniPodaci): JsObject = Json.obj(
+    def writes(lp: LicniPodaci): JsObject = Json.obj(
       "jmbg" -> lp.jmbg,
       "ime" -> lp.ime,
       "prezime" -> lp.prezime,
@@ -25,7 +27,7 @@ object LicniPodaci {
   }
 
   implicit object LicniPodaciReads extends Reads[LicniPodaci] {
-    override def reads(json: JsValue): JsResult[LicniPodaci] = json match {
+    def reads(json: JsValue): JsResult[LicniPodaci] = json match {
       case obj: JsObject => try {
         val jmbg = (obj \ "jmbg").as[Int]
         val ime = (obj \ "ime").as[String]

@@ -3,8 +3,9 @@ package storage
 import javax.inject.{Inject, Singleton}
 import model.Ucenik
 import play.modules.reactivemongo.ReactiveMongoApi
+import play.modules.reactivemongo.json._
 import reactivemongo.api.Cursor
-import reactivemongo.play.json.collection.JSONCollection
+import reactivemongo.play.json.collection._
 import play.api.libs.json._
 
 import scala.concurrent.Future

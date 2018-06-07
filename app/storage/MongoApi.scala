@@ -1,7 +1,7 @@
 package storage
 
 import javax.inject.{Inject, Singleton}
-import model.Ucenik
+import model.Student
 import play.modules.reactivemongo.ReactiveMongoApi
 import play.modules.reactivemongo.json._
 import reactivemongo.api.Cursor
@@ -16,21 +16,21 @@ class MongoApi @Inject()(val reactiveMongoApi: ReactiveMongoApi) {
   import scala.concurrent.ExecutionContext.Implicits.global
 
   val myDb = reactiveMongoApi.database
-  val ucenici: Future[JSONCollection] = myDb.map(_.collection("ucenici"))
+  val students: Future[JSONCollection] = myDb.map(_.collection("students"))
 
-  def vratiSveUcenike() = {
-    ucenici.flatMap(_.find(Json.obj())
-      .cursor[Ucenik]()
-      .collect[Seq](-1, Cursor.FailOnError[Seq[Ucenik]]()))
+  def getAllStudents() = {
+    students.flatMap(_.find(Json.obj())
+      .cursor[Student]()
+      .collect[Seq](-1, Cursor.FailOnError[Seq[Student]]()))
   }
 
-  def snimiUcenika(ucenik: Ucenik) = {
-    ucenici.flatMap(_.insert(ucenik))
+  def createStudent(student: Student) = {
+    students.flatMap(_.insert(student))
   }
 
-  def vratiJednogUcenika(id: String) = {
+  def getStudentById(id: String) = {
     val select = Json.obj("_id" -> id)
 
-    ucenici.flatMap(_.find(select).one[Ucenik])
+    students.flatMap(_.find(select).one[Student])
   }
 }

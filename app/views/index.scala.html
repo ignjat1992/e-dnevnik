@@ -1,5 +1,10 @@
-@()
+@import model.Student
+@(students: Seq[Student])
 
 @main("Welcome to Play") {
   <h1>Welcome to Play!</h1>
+  @if(students.isEmpty){
+    <p>There is no entered students</p>
+  }
+
 }

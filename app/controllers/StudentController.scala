@@ -11,7 +11,6 @@ import model.Student._
 class StudentController @Inject()(val mongoApi: MongoApi, cc: ControllerComponents) extends
   AbstractController(cc) with I18nSupport {
 
-  
   def index() = Action.async { implicit request: Request[AnyContent] =>
     val found = mongoApi.getAllStudents()
 

@@ -7,6 +7,7 @@
 GET     /                           controllers.SchoolController.index
 GET     /                           controllers.StudentController.showCreatingForm
 GET     /students                   controllers.StudentController.students
+POST    /students                   controllers.StudentController.create
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

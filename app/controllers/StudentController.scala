@@ -28,6 +28,19 @@ class StudentController @Inject()(val mongoApi: MongoApi, cc: ControllerComponen
   }
 
   def showCreatingForm() = Action.async { implicit request: Request[AnyContent] =>
-    Future.successful(Ok(views.html.editCreate()))
+    Future.successful(Ok(views.html.editStudent(form)))
   }
+
+  def create() = Action { implicit request: Request[AnyContent] =>
+    form.bindFromRequest().fold(
+      formWithErrors => {
+        BadRequest(views.html.editStudent(formWithErrors))
+      },
+      student => {
+        mongoApi.createStudent(student)
+        Redirect(routes.StudentController.students())
+      }
+    )
+  }
+
 }

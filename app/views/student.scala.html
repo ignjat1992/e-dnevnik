@@ -2,9 +2,29 @@
 
 @(students: Seq[Student])
 
-@main("Welcome to play") {
+@main("OS Stojan Novakovic") {
 
     @if(students.isEmpty){
-        <p>There is no entered students</p>
+        <p class="txt">There is no entered students</p>
+    } else {
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Odeljenje</th>
+                <th>Odeljenje</th>
+            </tr>
+            </thead>
+            <tbody>
+                @for(student <- students) {
+                    <tr>
+                        <td>student.personalData.firstName</td>
+                        <td>student.personalData.lastName</td>
+                        <td>student.Class</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 }

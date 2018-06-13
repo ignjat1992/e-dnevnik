@@ -1,15 +1,24 @@
 body {
     padding-top: 80px;
     padding-bottom: 60px;
+
+    /*background image*/
+    background-image: url("../images/board.png");
+
+    width: 100vw;
+    height: 100vh;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
 }
 
-.navbar-default {
-  background-color: #69899f;
-  border-color: #425766;
-
+.txt {
+    color: white;
+    text-align: center;
 }
 
-.navbar-default .navbar-brand {
-  color: #d7e2e9;
+p.txt{
 
+    padding-top: 10%;
+    font-size: 25px;
 }

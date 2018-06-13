@@ -12,10 +12,14 @@ class StudentController @Inject()(val mongoApi: MongoApi, cc: ControllerComponen
   AbstractController(cc) with I18nSupport {
 
   def index() = Action.async { implicit request: Request[AnyContent] =>
+    Future.successful(Ok(views.html.index()))
+  }
+
+  def students() = Action.async { implicit request: Request[AnyContent] =>
     val found = mongoApi.getAllStudents()
 
     found.map { students =>
-      Ok(views.html.index(students))
+      Ok(views.html.student(students))
     }.recover {
       case e =>
         e.printStackTrace()
@@ -24,6 +28,6 @@ class StudentController @Inject()(val mongoApi: MongoApi, cc: ControllerComponen
   }
 
   def showCreatingForm() = Action.async { implicit request: Request[AnyContent] =>
-    Future.successful(Ok(views.html.student()))
+    Future.successful(Ok(views.html.editCreate()))
   }
 }

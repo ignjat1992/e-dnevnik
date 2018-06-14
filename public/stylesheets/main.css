@@ -1,24 +1,36 @@
 body {
-    padding-top: 80px;
-    padding-bottom: 60px;
+   padding-top: 80px;
+   padding-bottom: 60px;
 
-    /*background image*/
-    background-image: url("../images/board.png");
+   /*background image*/
+   background-image: url("../images/board.png");
 
-    width: 100vw;
-    height: 100vh;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    position: relative;
+   width: 100vw;
+   height: 100vh;
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   position: relative;
+}
+
+@font-face {
+   font-family: myFont;
+   src: url("../fonts/Colored Crayons.ttf");
 }
 
 .txt {
-    color: white;
-    text-align: center;
+   font-family: myFont;
+   color: white;
+   text-align: center;
 }
 
 p.txt{
-
-    padding-top: 10%;
-    font-size: 25px;
+   font-family: myFont;
+   padding-top: 10%;
+   font-size: 25px;
 }
+
+.navbar-inner {
+   background:transparent;
+}
+
+
